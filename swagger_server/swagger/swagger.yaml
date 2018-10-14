@@ -1,0 +1,90 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a server of shoes store."
+  version: "1.0.0"
+  title: "Swagger Shoes store"
+host: "petstore.swagger.io"
+basePath: "/v1"
+schemes:
+- "http"
+paths:
+  /shoes:
+    get:
+      description: "Getting all shoes"
+      operationId: "shoes_get"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    post:
+      description: "Something"
+      operationId: "shoes_post"
+      consumes:
+      - "text/plain; charset=utf-8"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "name"
+        description: "Add"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Invalid input"
+        500:
+          description: "Server error"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /shoes/{id}:
+    put:
+      description: "Change name of shoe"
+      operationId: "shoes_id_put"
+      consumes:
+      - "text/plain; charset=utf-8"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Change name of shoe by id"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "name"
+        description: "Add"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "Successfully change name of shoe"
+        405:
+          description: "Invalid id"
+        404:
+          description: "Shoe with such name not found"
+        500:
+          description: "Server error"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    delete:
+      description: "Delete shoe"
+      operationId: "shoes_id_delete"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Delete existing shoe"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "Successfully delete"
+        405:
+          description: "Invalid id"
+        500:
+          description: "Server error"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+definitions: {}
